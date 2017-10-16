@@ -23,10 +23,10 @@ int main() {
 	} 
 	
 	// call sort giving the number of cores available.
-        const unsigned int numCores = std::thread::hardware_concurrency();
-        pbs.sort(numCores);
+    const unsigned int numCores = std::thread::hardware_concurrency();
+    pbs.sort(numCores);
 
-        std::cout << "number of cores used: " << numCores << std::endl;
+    std::cout << "number of cores used: " << numCores << std::endl;
 	
 	// print certain values from the buckets
 	std::cout << "Demonstrating that all the numbers that start with 1 come first" << std::endl;
@@ -34,4 +34,38 @@ int main() {
 		<< " " << pbs.numbersToSort[printIndex] << " " << pbs.numbersToSort[pbs.numbersToSort.size() - 1] 
 		<< std::endl;
 	
+
+	// BucketSort b;
+	// b.numbersToSort.push_back(0);
+	// b.numbersToSort.push_back(100);
+	// b.numbersToSort.push_back(3);
+	// b.numbersToSort.push_back(65);
+	// b.numbersToSort.push_back(2121);
+	// b.numbersToSort.push_back(21);
+	// b.numbersToSort.push_back(2);
+	// b.numbersToSort.push_back(254654);
+	// b.numbersToSort.push_back(8);
+	// b.numbersToSort.push_back(888);
+	// b.numbersToSort.push_back(4545);
+	// b.numbersToSort.push_back(9);
+	// b.numbersToSort.push_back(95);
+
+
+	// b.single_sort(4);
+
+	// for (size_t i = 0; i < 10; ++i) {
+	// 	std::cout << i << " bucket has: ";
+	// 	if (b.bucket[i].size() > 0) {
+	// 		for (auto ite = b.bucket[i].begin(); ite != b.bucket[i].end(); ++ite) {
+	// 			std::cout << *ite << " ";
+	// 		}
+	// 	}
+	// 	std::cout << std::endl;
+	// }
+
+	// std::cout << "The whole buckets has: ";
+	// for (auto ite = b.numbersToSort.begin(); ite != b.numbersToSort.end(); ++ite) {
+	// 	std::cout << *ite << " ";
+	// }
+	// std::cout << std::endl;
 }
