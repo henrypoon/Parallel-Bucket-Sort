@@ -1,6 +1,8 @@
 #include <iostream>
 #include <random>
 #include <thread>
+#include <string>
+#include <fstream>
 
 #include "BucketSort.h"
 
@@ -16,15 +18,28 @@ int main() {
 
 	// create a sort object
 	BucketSort pbs;
+	BucketSort single_test;
+
+	std::ofstream ofs1("out1");
+	std::ofstream ofs2("out2");
 
 	// insert random numbers into the sort object
 	for (unsigned int i=0; i < totalNumbers; ++i) {
 		pbs.numbersToSort.push_back(dist(mt));
 	} 
-	
+
+
+	for (size_t i = 0; i < totalNumbers; ++i) {
+		single_test.numbersToSort.push_back(pbs.numbersToSort.at(i));
+	}
+
 	// call sort giving the number of cores available.
     const unsigned int numCores = std::thread::hardware_concurrency();
     pbs.sort(numCores);
+    single_test.single_sort(numCores);
+    
+	std::copy(pbs.numbersToSort.begin(), pbs.numbersToSort.end(), std::ostream_iterator<unsigned int>(ofs1, " "));
+	std::copy(single_test.numbersToSort.begin(), single_test.numbersToSort.end(), std::ostream_iterator<unsigned int>(ofs2, " "));
 
     std::cout << "number of cores used: " << numCores << std::endl;
 	
@@ -34,6 +49,11 @@ int main() {
 		<< " " << pbs.numbersToSort[printIndex] << " " << pbs.numbersToSort[pbs.numbersToSort.size() - 1] 
 		<< std::endl;
 	
+	std::cout << "Demonstrating that all the numbers that start with 1 come first" << std::endl;
+	std::cout << single_test.numbersToSort[0] << " " << single_test.numbersToSort[printIndex - 10000]
+		<< " " << single_test.numbersToSort[printIndex] << " " << single_test.numbersToSort[single_test.numbersToSort.size() - 1] 
+		<< std::endl;
+
 
 	// BucketSort b;
 	// b.numbersToSort.push_back(0);
