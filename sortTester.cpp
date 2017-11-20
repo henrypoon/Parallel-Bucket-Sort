@@ -9,11 +9,17 @@
 #include <iostream>
 #include <iterator>
 #include <cstdlib>
+// #include <map>
 
-#include "BucketSort.h"
+// #include "BucketSort.h"
+
+unsigned GetBucketIndex(unsigned int x) {
+    return x *= pow(0.1, 1);
+}
 
 // std::vector<unsigned int> test = {48, 4, 2,2,454,2,1,10,24,1021,12,154};
 
+// std::map<unsigned int, int> m;
 
 // unsigned GetNumberOfDigits (unsigned i)
 // {
@@ -21,7 +27,9 @@
 // }
 
 // signed GetIndex(unsigned int i, int bit) {
-// 	int numOfDigit = GetNumberOfDigits(i);
+// 	if (m.find(i) == m.end())
+// 		m[i] = GetNumberOfDigits(i);
+// 	int numOfDigit = m[i];
 // 	if (bit > numOfDigit - 1)
 // 		return -1;
 // 	else
@@ -78,46 +86,47 @@ int main() {
 	// 	std::cout << *ite << " " << std::endl;
 	// }
 
-	unsigned int totalNumbers =	500000;
-	unsigned int printIndex =	259000;
+	std::cout << "fuck. " << GetBucketIndex(233) << std::endl;
+	// unsigned int totalNumbers =	500000;
+	// unsigned int printIndex =	259000;
 	
-	// use totalNumbers required as the seed for the random
-	// number generator. 
-	std::mt19937 mt(totalNumbers);
-	std::uniform_int_distribution<unsigned int> dist(1, std::numeric_limits<unsigned int>::max());
+	// // use totalNumbers required as the seed for the random
+	// // number generator. 
+	// std::mt19937 mt(totalNumbers);
+	// std::uniform_int_distribution<unsigned int> dist(1, std::numeric_limits<unsigned int>::max());
 
-	// create a sort object
-	BucketSort pbs;
-	// BucketSort single_test;
+	// // create a sort object
+	// BucketSort pbs;
+	// // BucketSort single_test;
 
-	// std::ofstream ofs1("out1");
-	// std::ofstream ofs2("out2");
+	// // std::ofstream ofs1("out1");
+	// // std::ofstream ofs2("out2");
 
-	// insert random numbers into the sort object
-	for (unsigned int i=0; i < totalNumbers; ++i) {
-		pbs.numbersToSort.push_back(dist(mt));
-	} 
+	// // insert random numbers into the sort object
+	// for (unsigned int i=0; i < totalNumbers; ++i) {
+	// 	pbs.numbersToSort.push_back(dist(mt));
+	// } 
 
 
-	// for (size_t i = 0; i < totalNumbers; ++i) {
-		// single_test.numbersToSort.push_back(pbs.numbersToSort.at(i));
-	// }
+	// // for (size_t i = 0; i < totalNumbers; ++i) {
+	// 	// single_test.numbersToSort.push_back(pbs.numbersToSort.at(i));
+	// // }
 
-	// call sort giving the number of cores available.
-    const unsigned int numCores = std::thread::hardware_concurrency();
-    pbs.sort(numCores);
-    // single_test.single_sort(numCores);
+	// // call sort giving the number of cores available.
+ //    const unsigned int numCores = std::thread::hardware_concurrency();
+ //    pbs.sort(numCores);
+ //    // single_test.single_sort(numCores);
 
-	// std::copy(pbs.numbersToSort.begin(), pbs.numbersToSort.end(), std::ostream_iterator<unsigned int>(ofs1, " "));
-	// std::copy(single_test.numbersToSort.begin(), single_test.numbersToSort.end(), std::ostream_iterator<unsigned int>(ofs2, " "));
+	// // std::copy(pbs.numbersToSort.begin(), pbs.numbersToSort.end(), std::ostream_iterator<unsigned int>(ofs1, " "));
+	// // std::copy(single_test.numbersToSort.begin(), single_test.numbersToSort.end(), std::ostream_iterator<unsigned int>(ofs2, " "));
 
-    std::cout << "number of cores used: " << numCores << std::endl;
+ //    std::cout << "number of cores used: " << numCores << std::endl;
 	
-	// print certain values from the buckets
-	std::cout << "Demonstrating that all the numbers that start with 1 come first" << std::endl;
-	std::cout << pbs.numbersToSort[0] << " " << pbs.numbersToSort[printIndex - 10000]
-		<< " " << pbs.numbersToSort[printIndex] << " " << pbs.numbersToSort[pbs.numbersToSort.size() - 1] 
-		<< std::endl;
+	// // print certain values from the buckets
+	// std::cout << "Demonstrating that all the numbers that start with 1 come first" << std::endl;
+	// std::cout << pbs.numbersToSort[0] << " " << pbs.numbersToSort[printIndex - 10000]
+	// 	<< " " << pbs.numbersToSort[printIndex] << " " << pbs.numbersToSort[pbs.numbersToSort.size() - 1] 
+	// 	<< std::endl;
 	
 
 
